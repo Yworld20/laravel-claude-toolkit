@@ -4,7 +4,7 @@ Laravel 12 project with Docker-based development environment.
 
 ## Stack
 
-PHP 8.5 | Laravel 12 | SQLite | Vite + Tailwind CSS 4
+PHP 8.4 | Laravel 12 | SQLite | Vite + Tailwind CSS 4
 
 ## Quick Start
 
