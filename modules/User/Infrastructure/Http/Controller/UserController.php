@@ -27,8 +27,8 @@ final readonly class UserController
 
         ($this->createUserHandler)(new CreateUser(
             id: $id,
-            name: $request->validated('name'),
-            email: $request->validated('email'),
+            name: (string) $request->validated('name'),
+            email: (string) $request->validated('email'),
         ));
 
         $user = ($this->getUserByIdHandler)(new GetUserById($id));
