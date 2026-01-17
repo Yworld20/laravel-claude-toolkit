@@ -165,11 +165,72 @@ final class <Name>HandlerTest extends TestCase
 }
 ```
 
+## Error Handling Example
+
+Show how handlers can throw domain exceptions:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\<Module>\Application\Command;
+
+use Modules\<Module>\Domain\Entity\<Entity>;
+use Modules\<Module>\Domain\Entity\<Entity>Id;
+use Modules\<Module>\Domain\Exception\<Entity>NotFound;
+use Modules\<Module>\Domain\Repository\<Entity>Repository;
+
+final readonly class Update<Entity>Handler
+{
+    public function __construct(
+        private <Entity>Repository $repository,
+    ) {
+    }
+
+    public function __invoke(Update<Entity> $command): void
+    {
+        $entity = $this->repository->findById(
+            <Entity>Id::fromString($command->id)
+        );
+
+        if ($entity === null) {
+            throw <Entity>NotFound::withId($command->id);
+        }
+
+        $updatedEntity = $entity->updateWith($command->data);
+
+        $this->repository->save($updatedEntity);
+    }
+}
+```
+
+## Handler Test with Exception
+
+```php
+public function test_throws_exception_when_entity_not_found(): void
+{
+    $repository = $this->createMock(<Entity>Repository::class);
+    $repository->method('findById')->willReturn(null);
+
+    $handler = new Update<Entity>Handler($repository);
+
+    $this->expectException(<Entity>NotFound::class);
+
+    $handler(new Update<Entity>(id: 'non-existent-id'));
+}
+```
+
+## Test Base Class Note
+
+Application layer tests (handlers) should use `PHPUnit\Framework\TestCase` directly with mocked repositories. This keeps tests fast and isolated from infrastructure. Only use `Tests\TestCase` when you need Laravel's application container.
+
 ## Checklist
 - [ ] Test file created first
 - [ ] Test fails initially (Red)
 - [ ] DTO class created
 - [ ] Handler class created
+- [ ] Exception handling implemented
 - [ ] Test passes (Green)
 - [ ] Code refactored if needed
 - [ ] Handler only depends on interfaces

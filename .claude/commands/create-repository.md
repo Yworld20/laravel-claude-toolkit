@@ -117,6 +117,10 @@ final class <EntityName>EloquentRepositoryTest extends TestCase
 }
 ```
 
+## Test Base Class Note
+
+Repository integration tests should use `Tests\TestCase` with the `RefreshDatabase` trait since they interact with the real database. This ensures proper test isolation and database state reset between tests.
+
 ## Checklist
 - [ ] Interface created in Domain layer
 - [ ] InMemory implementation created

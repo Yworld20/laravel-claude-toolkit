@@ -187,7 +187,9 @@ Always follow red-green-refactor:
 
 | Command | Description |
 |---------|-------------|
-| `/create-entity <Module> <Name>` | Create domain entity with test |
+| `/create-module <Name>` | Scaffold a new module with full directory structure |
+| `/create-entity <Module> <Name>` | Create domain entity with ID and test |
+| `/create-value-object <Module> <Name>` | Create value object with validation and test |
 | `/create-use-case <Module> <Type> <Name>` | Create command/query handler |
 | `/create-repository <Module> <Name>` | Create repo interface + implementations |
 | `/create-controller <Module> <Name>` | Create thin HTTP controller |
@@ -206,11 +208,13 @@ Always follow red-green-refactor:
 
 ### Creating a New Feature
 
-1. Start with domain entity test (`/create-entity`)
-2. Create repository interface and test (`/create-repository`)
-3. Create use case handler and test (`/create-use-case`)
-4. Create controller and feature test (`/create-controller`)
-5. Run all tests to verify
+1. Scaffold module structure if new (`/create-module`)
+2. Create value objects for domain concepts (`/create-value-object`)
+3. Start with domain entity test (`/create-entity`)
+4. Create repository interface and test (`/create-repository`)
+5. Create use case handler and test (`/create-use-case`)
+6. Create controller and feature test (`/create-controller`)
+7. Run all tests to verify
 
 ### File Naming Conventions
 
@@ -219,6 +223,8 @@ Always follow red-green-refactor:
 | Entity | `{Name}.php` | `User.php` |
 | Entity ID | `{Name}Id.php` | `UserId.php` |
 | Value Object | `{Name}.php` | `Email.php` |
+| Validation Exception | `Invalid{Name}.php` | `InvalidEmail.php` |
+| Not Found Exception | `{Name}NotFound.php` | `UserNotFound.php` |
 | Repository Interface | `{Name}Repository.php` | `UserRepository.php` |
 | Eloquent Repository | `{Name}EloquentRepository.php` | `UserEloquentRepository.php` |
 | Command | `{Action}{Entity}.php` | `CreateUser.php` |
@@ -230,6 +236,7 @@ Always follow red-green-refactor:
 | Test Type | File Pattern |
 |-----------|--------------|
 | Entity Test | `tests/Unit/{Module}/Domain/Entity/{Name}Test.php` |
+| Value Object Test | `tests/Unit/{Module}/Domain/ValueObject/{Name}Test.php` |
 | Handler Test | `tests/Unit/{Module}/Application/{Type}/{Name}HandlerTest.php` |
 | Repository Test | `tests/Integration/{Module}/{Name}RepositoryTest.php` |
 | Feature Test | `tests/Feature/{Module}/{Name}Test.php` |

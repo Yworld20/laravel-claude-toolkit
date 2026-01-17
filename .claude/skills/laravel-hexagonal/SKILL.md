@@ -193,6 +193,118 @@ final readonly class {Name}Handler
 }
 ```
 
+### Query DTO (`modules/{Module}/Application/Query/{Name}.php`)
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\{Module}\Application\Query;
+
+final readonly class {Name}
+{
+    public function __construct(
+        public string $id,
+    ) {
+    }
+}
+```
+
+### Query Handler (`modules/{Module}/Application/Query/{Name}Handler.php`)
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\{Module}\Application\Query;
+
+use Modules\{Module}\Domain\Entity\{Entity};
+use Modules\{Module}\Domain\Entity\{Entity}Id;
+use Modules\{Module}\Domain\Repository\{Entity}Repository;
+
+final readonly class {Name}Handler
+{
+    public function __construct(
+        private {Entity}Repository $repository,
+    ) {
+    }
+
+    public function __invoke({Name} $query): ?{Entity}
+    {
+        return $this->repository->findById(
+            {Entity}Id::fromString($query->id)
+        );
+    }
+}
+```
+
+### Domain Event (`modules/{Module}/Domain/Event/{Name}.php`)
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\{Module}\Domain\Event;
+
+final readonly class {Name}
+{
+    public function __construct(
+        public string $aggregateId,
+        public \DateTimeImmutable $occurredAt,
+    ) {
+    }
+
+    public static function raise(string $aggregateId): self
+    {
+        return new self($aggregateId, new \DateTimeImmutable());
+    }
+}
+```
+
+### Domain Exception (`modules/{Module}/Domain/Exception/{Name}.php`)
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\{Module}\Domain\Exception;
+
+final class {Entity}NotFound extends \DomainException
+{
+    public static function withId(string $id): self
+    {
+        return new self("{Entity} with ID {$id} was not found");
+    }
+}
+```
+
+### Validation Exception (`modules/{Module}/Domain/Exception/Invalid{Name}.php`)
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\{Module}\Domain\Exception;
+
+final class Invalid{Name} extends \DomainException
+{
+    public static function empty(): self
+    {
+        return new self('{Name} cannot be empty');
+    }
+
+    public static function withFormat(string $value): self
+    {
+        return new self("Invalid {Name} format: {$value}");
+    }
+
+    public static function withReason(string $reason): self
+    {
+        return new self("Invalid {Name}: {$reason}");
+    }
+}
+```
+
 ### Controller (`modules/{Module}/Infrastructure/Http/Controller/{Name}Controller.php`)
 ```php
 <?php

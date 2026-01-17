@@ -224,12 +224,89 @@ final class <ControllerName>Test extends TestCase
 }
 ```
 
+## Error Handling Example
+
+Show how to catch domain exceptions and return appropriate HTTP responses:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\<Module>\Infrastructure\Http\Controller;
+
+use Modules\<Module>\Application\Command\Create<Entity>;
+use Modules\<Module>\Application\Command\Create<Entity>Handler;
+use Modules\<Module>\Domain\Exception\Invalid<Entity>;
+use Modules\<Module>\Domain\Exception\<Entity>NotFound;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+
+final readonly class <ControllerName>
+{
+    public function __construct(
+        private Create<Entity>Handler $handler,
+    ) {
+    }
+
+    public function store(Create<Entity>Request $request): JsonResponse
+    {
+        try {
+            ($this->handler)(new Create<Entity>(
+                id: $request->validated('id'),
+            ));
+
+            return response()->json(null, Response::HTTP_CREATED);
+        } catch (Invalid<Entity> $e) {
+            return response()->json(
+                ['error' => $e->getMessage()],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+    }
+
+    public function show(string $id): JsonResponse
+    {
+        try {
+            $entity = ($this->getByIdHandler)(new Get<Entity>ById($id));
+
+            return response()->json(new <Entity>Resource($entity));
+        } catch (<Entity>NotFound $e) {
+            return response()->json(
+                ['error' => $e->getMessage()],
+                Response::HTTP_NOT_FOUND
+            );
+        }
+    }
+}
+```
+
+## Error Handling Test Example
+
+```php
+public function test_returns_422_when_domain_validation_fails(): void
+{
+    $response = $this->postJson('/api/<entities>', [
+        'id' => 'valid-uuid',
+        'email' => 'invalid-email', // Triggers domain exception
+    ]);
+
+    $response->assertUnprocessable();
+    $response->assertJsonPath('error', 'Invalid Email: invalid-email');
+}
+```
+
+## Test Base Class Note
+
+Feature tests should use `Tests\TestCase` which extends Laravel's base test class. This provides access to the HTTP testing helpers (`$this->getJson()`, `$this->postJson()`, etc.) and the `RefreshDatabase` trait for database testing.
+
 ## Checklist
 - [ ] Feature test created first
 - [ ] Test fails initially (Red)
 - [ ] Form Request created (if needed)
 - [ ] API Resource created (if needed)
 - [ ] Controller created (thin, delegates to handlers)
+- [ ] Domain exception handling added
 - [ ] Routes registered
 - [ ] Test passes (Green)
 - [ ] No business logic in controller
