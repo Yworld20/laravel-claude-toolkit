@@ -9,31 +9,33 @@ Laravel 12 project with Docker-based development environment.
 ## Quick Start
 
 ```bash
-./dev start        # Start development environment
-./dev stop         # Stop all services
+./vendor/bin/sail up -d    # Start development environment
+./vendor/bin/sail down     # Stop all services
 ```
 
-Access: http://localhost:8080
+Access: http://localhost:8083
 
 ## Available Commands
 
 ```bash
-./dev start        # Start dev environment with hot-reload
-./dev stop         # Stop all services
-./dev build        # Build production image
-./dev shell        # Open shell in app container
-./dev test         # Run PHPUnit tests
-./dev artisan ...  # Run artisan commands
-./dev composer ... # Run composer commands
-./dev npm ...      # Run npm commands
-./dev logs         # Follow container logs
-./dev fresh        # Reset database and reseed
+./vendor/bin/sail up -d      # Start dev environment
+./vendor/bin/sail down       # Stop all services
+./vendor/bin/sail shell      # Open shell in app container
+./vendor/bin/sail test       # Run PHPUnit tests
+./vendor/bin/sail artisan    # Run artisan commands
+./vendor/bin/sail composer   # Run composer commands
+./vendor/bin/sail npm        # Run npm commands
 ```
+
+Tip: Add alias to your shell: `alias sail='./vendor/bin/sail'`
 
 ## Stack
 
-- PHP 8.4 (FPM Alpine)
+- PHP 8.4
 - Laravel 12
 - SQLite
-- Nginx
 - Vite + Tailwind CSS 4
+
+## License
+
+MIT
