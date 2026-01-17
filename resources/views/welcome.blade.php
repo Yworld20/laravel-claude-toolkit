@@ -152,6 +152,41 @@
                         </p>
                     </div>
 
+                    <!-- Why Section -->
+                    <div class="section-divider">
+                        <span class="prompt">#</span> <span class="section-title">WHY THIS TOOLKIT?</span>
+                    </div>
+
+                    <div>
+                        <p class="cmd-line">
+                            <span class="prompt">$</span>
+                            <span class="cmd">cat</span> <span class="file">problem.txt</span>
+                        </p>
+                        <p class="output">
+                            Laravel projects grow into tangled monoliths where adding features becomes risky and testing becomes painful.
+                        </p>
+                    </div>
+
+                    <div style="margin-top: 1rem;">
+                        <p class="cmd-line">
+                            <span class="prompt">$</span>
+                            <span class="cmd">cat</span> <span class="file">solution.txt</span>
+                        </p>
+                        <p class="output">
+                            Structured patterns (DDD, Hexagonal) + AI guardrails that enforce consistency and guide architectural decisions.
+                        </p>
+                    </div>
+
+                    <div class="highlight-tags" style="margin-top: 1rem;">
+                        <span class="highlight-tag">Testable</span>
+                        <span class="highlight-tag">|</span>
+                        <span class="highlight-tag">Maintainable</span>
+                        <span class="highlight-tag">|</span>
+                        <span class="highlight-tag">Scalable</span>
+                        <span class="highlight-tag">|</span>
+                        <span class="highlight-tag">AI-Guided</span>
+                    </div>
+
                     <!-- Quick Start Section -->
                     <div class="section-divider">
                         <span class="prompt">#</span> <span class="section-title">QUICK START</span>
