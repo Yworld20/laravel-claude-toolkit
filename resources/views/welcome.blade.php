@@ -55,6 +55,17 @@
             .tree-comment { color: #6b7280; font-style: italic; }
             .highlight-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
             .highlight-tag { color: #a78bfa; font-size: 0.75rem; }
+            details { margin: 0.25rem 0; }
+            summary { cursor: pointer; list-style: none; }
+            summary::-webkit-details-marker { display: none; }
+            summary::before { content: '▶ '; color: #6b7280; font-size: 0.625rem; transition: transform 0.2s; display: inline-block; width: 1rem; }
+            details[open] summary::before { content: '▼ '; }
+            summary:hover .table-name { text-decoration: underline; }
+            .example-box { background-color: #111827; border-left: 2px solid rgba(34, 197, 94, 0.4); margin: 0.5rem 0 0.5rem 1rem; padding: 0.75rem; font-size: 0.7rem; }
+            .example-label { color: #6b7280; font-size: 0.625rem; text-transform: uppercase; margin-bottom: 0.25rem; }
+            .example-input { color: #22d3ee; }
+            .example-output { color: #86efac; white-space: pre-wrap; }
+            .example-file { color: #facc15; font-size: 0.65rem; }
             .links { padding-top: 1rem; border-top: 1px solid rgba(34, 197, 94, 0.2); display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.75rem; margin-top: 1rem; }
             .link { padding: 0.375rem 0.75rem; border: 1px solid rgba(34, 197, 94, 0.5); border-radius: 0.25rem; text-decoration: none; transition: all 0.2s; }
             .link:hover { background-color: rgba(34, 197, 94, 0.1); border-color: #4ade80; }
@@ -144,18 +155,54 @@
                     <div>
                         <div class="table-header">AGENT                       PURPOSE</div>
                         <div style="border-bottom: 1px solid rgba(107, 114, 128, 0.3); margin-bottom: 0.5rem;"></div>
-                        <div class="table-row">
-                            <span class="table-name">domain-architect</span>
-                            <span class="table-desc">DDD & hexagonal architecture guidance</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">tdd-coach</span>
-                            <span class="table-desc">Red-green-refactor workflow coaching</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">clean-code-reviewer</span>
-                            <span class="table-desc">SOLID principles & code smell detection</span>
-                        </div>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">domain-architect</span>
+                                <span class="table-desc">DDD & hexagonal architecture guidance</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">You ask:</div>
+                                <div class="example-input">"How should I structure the Order module?"</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Agent helps with:</div>
+                                <div class="example-output">- Entity design (Order, OrderLine, OrderId)
+- Value objects (Money, Quantity, Address)
+- Repository interface placement
+- Module boundaries & dependencies</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">tdd-coach</span>
+                                <span class="table-desc">Red-green-refactor workflow coaching</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">You ask:</div>
+                                <div class="example-input">"Help me TDD a discount calculator"</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Agent guides you through:</div>
+                                <div class="example-output">1. RED: Write failing test for 10% discount
+2. GREEN: Implement minimum code to pass
+3. REFACTOR: Extract discount strategy pattern
+4. Repeat for edge cases (max discount, stacking)</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">clean-code-reviewer</span>
+                                <span class="table-desc">SOLID principles & code smell detection</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">You ask:</div>
+                                <div class="example-input">"Review my OrderService class"</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Agent identifies:</div>
+                                <div class="example-output">- SRP violation: Split payment logic to PaymentService
+- DIP violation: Depend on interface, not Eloquent model
+- Long method: Extract validateOrder() helper
+- Missing null check on optional discount</div>
+                            </div>
+                        </details>
                     </div>
 
                     <!-- Claude Code Commands Section -->
@@ -166,30 +213,98 @@
                     <div>
                         <div class="table-header">COMMAND                     GENERATES</div>
                         <div style="border-bottom: 1px solid rgba(107, 114, 128, 0.3); margin-bottom: 0.5rem;"></div>
-                        <div class="table-row">
-                            <span class="table-name">/create-entity</span>
-                            <span class="table-desc">Domain entity + value objects + test</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">/create-repository</span>
-                            <span class="table-desc">Interface + Eloquent + InMemory impls</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">/create-use-case</span>
-                            <span class="table-desc">Command/Query DTO + Handler + test</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">/create-controller</span>
-                            <span class="table-desc">Thin controller + request + resource</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">/tdd-cycle</span>
-                            <span class="table-desc">Interactive red-green-refactor guide</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">/refactor-check</span>
-                            <span class="table-desc">SOLID violations & improvement report</span>
-                        </div>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">/create-entity</span>
+                                <span class="table-desc">Domain entity + value objects + test</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Input:</div>
+                                <div class="example-input">/create-entity Order Order</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Creates:</div>
+                                <div class="example-file">modules/Order/Domain/Entity/Order.php</div>
+                                <div class="example-file">modules/Order/Domain/ValueObject/OrderId.php</div>
+                                <div class="example-file">tests/Unit/Order/Domain/Entity/OrderTest.php</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">/create-repository</span>
+                                <span class="table-desc">Interface + Eloquent + InMemory impls</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Input:</div>
+                                <div class="example-input">/create-repository Order Order</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Creates:</div>
+                                <div class="example-file">modules/Order/Domain/Repository/OrderRepository.php</div>
+                                <div class="example-file">modules/Order/Infrastructure/Persistence/Eloquent/OrderEloquentRepository.php</div>
+                                <div class="example-file">modules/Order/Infrastructure/Persistence/InMemory/OrderInMemoryRepository.php</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">/create-use-case</span>
+                                <span class="table-desc">Command/Query DTO + Handler + test</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Input:</div>
+                                <div class="example-input">/create-use-case Order Command CreateOrder</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Creates:</div>
+                                <div class="example-file">modules/Order/Application/Command/CreateOrder.php</div>
+                                <div class="example-file">modules/Order/Application/Command/CreateOrderHandler.php</div>
+                                <div class="example-file">tests/Unit/Order/Application/Command/CreateOrderHandlerTest.php</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">/create-controller</span>
+                                <span class="table-desc">Thin controller + request + resource</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Input:</div>
+                                <div class="example-input">/create-controller Order Order</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Creates:</div>
+                                <div class="example-file">modules/Order/Infrastructure/Http/Controller/OrderController.php</div>
+                                <div class="example-file">modules/Order/Infrastructure/Http/Request/CreateOrderRequest.php</div>
+                                <div class="example-file">modules/Order/Infrastructure/Http/Resource/OrderResource.php</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">/tdd-cycle</span>
+                                <span class="table-desc">Interactive red-green-refactor guide</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Input:</div>
+                                <div class="example-input">/tdd-cycle</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Guides you through:</div>
+                                <div class="example-output">Phase 1: RED - Write a failing test first
+Phase 2: GREEN - Write minimal code to pass
+Phase 3: REFACTOR - Improve while tests pass
+Then loops back to RED for next behavior</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">/refactor-check</span>
+                                <span class="table-desc">SOLID violations & improvement report</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Input:</div>
+                                <div class="example-input">/refactor-check modules/Order/</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Reports:</div>
+                                <div class="example-output">- Classes with too many dependencies
+- Methods exceeding complexity threshold
+- Missing interface abstractions
+- Suggested refactoring patterns</div>
+                            </div>
+                        </details>
                     </div>
 
                     <!-- Claude Code Skills Section -->
@@ -200,30 +315,90 @@
                     <div>
                         <div class="table-header">SKILL                       PROVIDES</div>
                         <div style="border-bottom: 1px solid rgba(107, 114, 128, 0.3); margin-bottom: 0.5rem;"></div>
-                        <div class="table-row">
-                            <span class="table-name">create-entity</span>
-                            <span class="table-desc">Domain entity scaffolding templates</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">create-repository</span>
-                            <span class="table-desc">Repository pattern implementations</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">create-use-case</span>
-                            <span class="table-desc">CQRS handler templates & best practices</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">create-controller</span>
-                            <span class="table-desc">HTTP layer scaffolding</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">tdd-cycle</span>
-                            <span class="table-desc">Test-driven development workflow</span>
-                        </div>
-                        <div class="table-row">
-                            <span class="table-name">refactor-check</span>
-                            <span class="table-desc">Code quality analysis rules</span>
-                        </div>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">create-entity</span>
+                                <span class="table-desc">Domain entity scaffolding templates</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Skill provides:</div>
+                                <div class="example-output">- final readonly class pattern
+- Private constructor + static factory
+- Invariant validation in create()
+- Identity value object (EntityId)</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">create-repository</span>
+                                <span class="table-desc">Repository pattern implementations</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Skill provides:</div>
+                                <div class="example-output">- Interface in Domain layer
+- Eloquent implementation for production
+- InMemory implementation for tests
+- Service provider bindings</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">create-use-case</span>
+                                <span class="table-desc">CQRS handler templates & best practices</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Skill provides:</div>
+                                <div class="example-output">- Command/Query DTO with readonly props
+- Handler with __invoke() method
+- Repository injection pattern
+- Unit test with InMemory repository</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">create-controller</span>
+                                <span class="table-desc">HTTP layer scaffolding</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Skill provides:</div>
+                                <div class="example-output">- Thin controller (validate, dispatch, respond)
+- Form Request for validation rules
+- API Resource for transformation
+- Route registration example</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">tdd-cycle</span>
+                                <span class="table-desc">Test-driven development workflow</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Skill provides:</div>
+                                <div class="example-output">- RED: Test naming conventions
+- GREEN: Minimal implementation tips
+- REFACTOR: When & how to refactor
+- Test isolation best practices</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">refactor-check</span>
+                                <span class="table-desc">Code quality analysis rules</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Skill analyzes:</div>
+                                <div class="example-output">- Single Responsibility violations
+- Dependency Inversion issues
+- Method complexity metrics
+- Coupling between modules</div>
+                            </div>
+                        </details>
                     </div>
 
                     <!-- Architecture Preview Section -->
