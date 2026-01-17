@@ -1,0 +1,63 @@
+services:
+  # =============================================================================
+  # PHP-FPM Application Container
+  # =============================================================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${DOCKER_TARGET:-development}
+    container_name: laravel-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+      - ./database/database.sqlite:/var/www/html/database/database.sqlite
+      - storage:/var/www/html/storage
+    networks:
+      - laravel
+
+  # =============================================================================
+  # Nginx Web Server
+  # =============================================================================
+  web:
+    image: nginx:alpine
+    container_name: laravel-web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html:ro
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - laravel
+    depends_on:
+      - app
+
+  # =============================================================================
+  # Node.js for Vite Dev Server (Development only)
+  # =============================================================================
+  node:
+    image: node:20-alpine
+    container_name: laravel-node
+    profiles:
+      - dev
+    working_dir: /var/www/html
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/var/www/html
+      - node_modules:/var/www/html/node_modules
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    networks:
+      - laravel
+
+networks:
+  laravel:
+    driver: bridge
+
+volumes:
+  storage:
+    driver: local
+  node_modules:
+    driver: local
