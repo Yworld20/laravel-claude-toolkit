@@ -66,6 +66,24 @@
             .example-input { color: #22d3ee; }
             .example-output { color: #86efac; white-space: pre-wrap; }
             .example-file { color: #facc15; font-size: 0.65rem; }
+            .cmd-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0; }
+            .cmd-row:hover { background-color: rgba(34, 197, 94, 0.05); }
+            .cmd-row .copy-inline { opacity: 0; background: transparent; border: none; color: #6b7280; cursor: pointer; font-size: 0.625rem; padding: 0.125rem 0.25rem; transition: opacity 0.2s; flex-shrink: 0; }
+            .cmd-row:hover .copy-inline { opacity: 1; }
+            .cmd-row .copy-inline:hover { color: #4ade80; }
+            .cmd-row .copy-inline.copied { opacity: 1; color: #4ade80; }
+            .cmd-row code { flex: 1; }
+            .config-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(107, 114, 128, 0.2); }
+            .config-field { display: flex; align-items: center; gap: 0.5rem; }
+            .config-field label { color: #6b7280; font-size: 0.7rem; }
+            .config-field input { background: #030712; border: 1px solid rgba(34, 197, 94, 0.4); color: #facc15; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-family: inherit; border-radius: 0.25rem; width: 8rem; }
+            .config-field input:focus { outline: none; border-color: #4ade80; }
+            .config-field input::placeholder { color: rgba(250, 204, 21, 0.4); }
+            .port-input { width: 4rem !important; }
+            .copy-all-btn { background: transparent; border: 1px solid rgba(34, 197, 94, 0.5); color: #4ade80; padding: 0.25rem 0.75rem; font-size: 0.65rem; font-family: inherit; cursor: pointer; border-radius: 0.25rem; transition: all 0.2s; margin-left: auto; white-space: nowrap; }
+            .copy-all-btn:hover { background-color: rgba(34, 197, 94, 0.1); border-color: #4ade80; }
+            .copy-all-btn.copied { background-color: rgba(34, 197, 94, 0.2); }
+            .config-inputs { display: flex; flex-wrap: wrap; gap: 1rem; }
             .links { padding-top: 1rem; border-top: 1px solid rgba(34, 197, 94, 0.2); display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.75rem; margin-top: 1rem; }
             .link { padding: 0.375rem 0.75rem; border: 1px solid rgba(34, 197, 94, 0.5); border-radius: 0.25rem; text-decoration: none; transition: all 0.2s; }
             .link:hover { background-color: rgba(34, 197, 94, 0.1); border-color: #4ade80; }
@@ -133,10 +151,35 @@
                         <span class="prompt">#</span> <span class="section-title">QUICK START</span>
                     </div>
 
-                    <div class="code-block">
-                        <p><span class="prompt">$</span> <span class="cmd">gh repo create</span> my-project <span class="cmd">--template</span> Chemaclass/laravel-claude-toolkit</p>
-                        <p><span class="prompt">$</span> <span class="cmd">cd</span> my-project && <span class="cmd">composer setup</span></p>
-                        <p><span class="prompt">$</span> <span class="cmd">./vendor/bin/sail up -d</span></p>
+                    <div class="code-block" id="quick-start">
+                        <div class="config-row">
+                            <div class="config-inputs">
+                                <div class="config-field">
+                                    <label for="project-name">Project:</label>
+                                    <input type="text" id="project-name" value="my-app" placeholder="my-app" oninput="updateCommands()">
+                                </div>
+                                <div class="config-field">
+                                    <label for="app-port">Port:</label>
+                                    <input type="number" id="app-port" value="8080" class="port-input" oninput="updateCommands()">
+                                </div>
+                            </div>
+                            <button class="copy-all-btn" onclick="copyAll(this)">COPY ALL</button>
+                        </div>
+                        <div class="cmd-row">
+                            <span class="prompt">$</span>
+                            <code id="cmd-1"><span class="cmd">gh repo create</span> <span class="file">my-app</span> <span class="cmd">--template</span> Chemaclass/laravel-claude-toolkit <span class="cmd">--public --clone</span></code>
+                            <button class="copy-inline" onclick="copyCmd(this, 1)" title="Copy">copy</button>
+                        </div>
+                        <div class="cmd-row">
+                            <span class="prompt">$</span>
+                            <code id="cmd-2"><span class="cmd">cd</span> <span class="file">my-app</span> && <span class="cmd">composer setup</span></code>
+                            <button class="copy-inline" onclick="copyCmd(this, 2)" title="Copy">copy</button>
+                        </div>
+                        <div class="cmd-row">
+                            <span class="prompt">$</span>
+                            <code id="cmd-3"><span class="cmd">APP_PORT=</span><span class="file">8080</span> <span class="cmd">./vendor/bin/sail up -d</span></code>
+                            <button class="copy-inline" onclick="copyCmd(this, 3)" title="Copy">copy</button>
+                        </div>
                     </div>
 
                     <div class="stack-badges">
@@ -448,5 +491,63 @@ Then loops back to RED for next behavior</div>
                 Made with <span class="heart">&lt;3</span> and a lot of <span class="coffee">coffee</span>
             </p>
         </main>
+
+        <script>
+            function getProjectName() {
+                return document.getElementById('project-name').value || 'my-app';
+            }
+
+            function getPort() {
+                return document.getElementById('app-port').value || '8080';
+            }
+
+            function getCommand(num) {
+                const name = getProjectName();
+                const port = getPort();
+                switch(num) {
+                    case 1: return `gh repo create ${name} --template Chemaclass/laravel-claude-toolkit --public --clone`;
+                    case 2: return `cd ${name} && composer setup`;
+                    case 3: return `APP_PORT=${port} ./vendor/bin/sail up -d`;
+                }
+            }
+
+            function updateCommands() {
+                const name = getProjectName();
+                const port = getPort();
+
+                document.getElementById('cmd-1').innerHTML =
+                    `<span class="cmd">gh repo create</span> <span class="file">${name}</span> <span class="cmd">--template</span> Chemaclass/laravel-claude-toolkit <span class="cmd">--public --clone</span>`;
+
+                document.getElementById('cmd-2').innerHTML =
+                    `<span class="cmd">cd</span> <span class="file">${name}</span> && <span class="cmd">composer setup</span>`;
+
+                document.getElementById('cmd-3').innerHTML =
+                    `<span class="cmd">APP_PORT=</span><span class="file">${port}</span> <span class="cmd">./vendor/bin/sail up -d</span>`;
+            }
+
+            function copyCmd(btn, num) {
+                const cmd = getCommand(num);
+                navigator.clipboard.writeText(cmd).then(() => {
+                    btn.textContent = 'copied!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = 'copy';
+                        btn.classList.remove('copied');
+                    }, 1500);
+                });
+            }
+
+            function copyAll(btn) {
+                const commands = [getCommand(1), getCommand(2), getCommand(3)].join('\n');
+                navigator.clipboard.writeText(commands).then(() => {
+                    btn.textContent = 'COPIED!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = 'COPY ALL';
+                        btn.classList.remove('copied');
+                    }, 1500);
+                });
+            }
+        </script>
     </body>
 </html>
