@@ -239,6 +239,97 @@
                         <span class="badge">Sail</span>
                     </div>
 
+                    <!-- Quality Tooling Section -->
+                    <div class="section-divider">
+                        <span class="prompt">#</span> <span class="section-title">QUALITY TOOLING</span>
+                    </div>
+
+                    <div>
+                        <div class="table-header">TOOL                        DESCRIPTION</div>
+                        <div style="border-bottom: 1px solid rgba(107, 114, 128, 0.3); margin-bottom: 0.5rem;"></div>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">PHPStan (max level)</span>
+                                <span class="table-desc">Static analysis with Larastan</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Run:</div>
+                                <div class="example-input">composer phpstan</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Features:</div>
+                                <div class="example-output">- Level max (strictest analysis)
+- Laravel-aware via Larastan
+- Catches type errors before runtime
+- Analyzes app/ and modules/</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">Rector</span>
+                                <span class="table-desc">Automated refactoring & upgrades</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Run:</div>
+                                <div class="example-input">composer rector      # dry-run</div>
+                                <div class="example-input">composer rector:fix  # apply changes</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Features:</div>
+                                <div class="example-output">- Auto-upgrade PHP syntax
+- Dead code removal
+- Code quality improvements
+- Consistent coding patterns</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">Pint</span>
+                                <span class="table-desc">Laravel code style fixer</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Run:</div>
+                                <div class="example-input">composer lint  # check style</div>
+                                <div class="example-input">composer fix   # auto-fix</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Features:</div>
+                                <div class="example-output">- Laravel coding standards
+- PSR-12 compliant
+- Automatic formatting
+- Zero configuration needed</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">PHPUnit</span>
+                                <span class="table-desc">Testing framework</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Run:</div>
+                                <div class="example-input">./vendor/bin/sail test</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Features:</div>
+                                <div class="example-output">- Unit, Integration & Feature tests
+- Parallel test execution
+- Code coverage reports
+- Laravel testing helpers</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">Git Hooks</span>
+                                <span class="table-desc">Pre-commit quality gates</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Auto-configured:</div>
+                                <div class="example-input">composer setup  # enables hooks</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Pre-commit runs:</div>
+                                <div class="example-output">- Pint (code style check)
+- PHPStan (static analysis)
+- Blocks commits if checks fail</div>
+                            </div>
+                        </details>
+                    </div>
+
                     <!-- Claude Code Agents Section -->
                     <div class="section-divider">
                         <span class="prompt">#</span> <span class="section-title">CLAUDE CODE AGENTS</span>
