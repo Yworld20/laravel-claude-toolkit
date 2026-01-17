@@ -84,6 +84,10 @@
             .copy-all-btn:hover { background-color: rgba(34, 197, 94, 0.1); border-color: #4ade80; }
             .copy-all-btn.copied { background-color: rgba(34, 197, 94, 0.2); }
             .config-inputs { display: flex; flex-wrap: wrap; gap: 1rem; }
+            .localhost-hint { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(34, 197, 94, 0.2); font-size: 0.75rem; animation: fadeIn 0.3s ease-in; }
+            .localhost-link { color: #4ade80; text-decoration: none; }
+            .localhost-link:hover { text-decoration: underline; }
+            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
             .links { padding-top: 1rem; border-top: 1px solid rgba(34, 197, 94, 0.2); display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.75rem; margin-top: 1rem; }
             .link { padding: 0.375rem 0.75rem; border: 1px solid rgba(34, 197, 94, 0.5); border-radius: 0.25rem; text-decoration: none; transition: all 0.2s; }
             .link:hover { background-color: rgba(34, 197, 94, 0.1); border-color: #4ade80; }
@@ -183,6 +187,9 @@
                             <span class="prompt">$</span>
                             <code id="cmd-3"><span class="cmd">APP_PORT=</span><span class="file">8080</span> <span class="cmd">VITE_PORT=</span><span class="file">5174</span> <span class="cmd">./vendor/bin/sail up -d</span></code>
                             <button class="copy-inline" onclick="copyCmd(this, 3)" title="Copy">copy</button>
+                        </div>
+                        <div id="localhost-hint" class="localhost-hint" style="display: none;">
+                            <span style="color: #6b7280;">After running, your app will be available at</span> <a id="localhost-url" href="http://localhost:8080" target="_blank" class="localhost-link">http://localhost:8080</a>
                         </div>
                     </div>
 
@@ -549,9 +556,19 @@ Then loops back to RED for next behavior</div>
 
             function copyAll(btn) {
                 const commands = [getCommand(1), getCommand(2), getCommand(3)].join('\n');
+                const appPort = getAppPort();
+                const url = `http://localhost:${appPort}`;
+
                 navigator.clipboard.writeText(commands).then(() => {
                     btn.textContent = 'COPIED!';
                     btn.classList.add('copied');
+
+                    const hint = document.getElementById('localhost-hint');
+                    const link = document.getElementById('localhost-url');
+                    link.href = url;
+                    link.textContent = url;
+                    hint.style.display = 'block';
+
                     setTimeout(() => {
                         btn.textContent = 'COPY ALL';
                         btn.classList.remove('copied');
