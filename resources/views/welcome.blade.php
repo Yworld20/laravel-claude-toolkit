@@ -80,6 +80,10 @@
             .config-field input { background: #030712; border: 1px solid rgba(34, 197, 94, 0.4); color: #facc15; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-family: inherit; border-radius: 0.25rem; width: 8rem; }
             .config-field input:focus { outline: none; border-color: #4ade80; }
             .config-field input::placeholder { color: rgba(250, 204, 21, 0.4); }
+            .config-field select { background: #030712; border: 1px solid rgba(34, 197, 94, 0.4); color: #4ade80; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-family: inherit; border-radius: 0.25rem; cursor: pointer; appearance: none; -webkit-appearance: none; -moz-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234ade80' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.4rem center; padding-right: 1.5rem; }
+            .config-field select:focus { outline: none; border-color: #4ade80; }
+            .config-field select:hover { border-color: #4ade80; }
+            .config-field select option { background: #030712; color: #4ade80; }
             .port-input { width: 4rem !important; }
             .copy-all-btn { background: transparent; border: 1px solid rgba(34, 197, 94, 0.5); color: #4ade80; padding: 0.25rem 0.75rem; font-size: 0.65rem; font-family: inherit; cursor: pointer; border-radius: 0.25rem; transition: all 0.2s; margin-left: auto; white-space: nowrap; }
             .copy-all-btn:hover { background-color: rgba(34, 197, 94, 0.1); border-color: #4ade80; }
@@ -199,6 +203,13 @@
                                 <div class="config-field">
                                     <label for="project-name">Project:</label>
                                     <input type="text" id="project-name" value="my-app" placeholder="my-app" oninput="updateCommands()">
+                                </div>
+                                <div class="config-field">
+                                    <label for="repo-visibility">Visibility:</label>
+                                    <select id="repo-visibility" onchange="updateCommands()">
+                                        <option value="public">public</option>
+                                        <option value="private">private</option>
+                                    </select>
                                 </div>
                                 <div class="config-field">
                                     <label for="app-port">App:</label>
@@ -648,12 +659,17 @@ Then loops back to RED for next behavior</div>
                 return document.getElementById('vite-port').value || '5174';
             }
 
+            function getRepoVisibility() {
+                return document.getElementById('repo-visibility').value || 'public';
+            }
+
             function getCommand(num) {
                 const name = getProjectName();
                 const appPort = getAppPort();
                 const vitePort = getVitePort();
+                const visibility = getRepoVisibility();
                 switch(num) {
-                    case 1: return `gh repo create ${name} --template Chemaclass/laravel-claude-toolkit --public --clone`;
+                    case 1: return `gh repo create ${name} --template Chemaclass/laravel-claude-toolkit --${visibility} --clone`;
                     case 2: return `cd ${name} && composer setup`;
                     case 3: return `APP_PORT=${appPort} VITE_PORT=${vitePort} ./vendor/bin/sail up -d`;
                 }
@@ -663,9 +679,10 @@ Then loops back to RED for next behavior</div>
                 const name = getProjectName();
                 const appPort = getAppPort();
                 const vitePort = getVitePort();
+                const visibility = getRepoVisibility();
 
                 document.getElementById('cmd-1').innerHTML =
-                    `<span class="cmd">gh repo create</span> <span class="file">${name}</span> <span class="cmd">--template</span> Chemaclass/laravel-claude-toolkit <span class="cmd">--public --clone</span>`;
+                    `<span class="cmd">gh repo create</span> <span class="file">${name}</span> <span class="cmd">--template</span> Chemaclass/laravel-claude-toolkit <span class="cmd">--${visibility} --clone</span>`;
 
                 document.getElementById('cmd-2').innerHTML =
                     `<span class="cmd">cd</span> <span class="file">${name}</span> && <span class="cmd">composer setup</span>`;
