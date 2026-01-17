@@ -88,16 +88,18 @@
             .localhost-link { color: #4ade80; text-decoration: none; }
             .localhost-link:hover { text-decoration: underline; }
             @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-            .links { padding-top: 1rem; border-top: 1px solid rgba(34, 197, 94, 0.2); display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.75rem; margin-top: 1rem; }
-            .link { padding: 0.375rem 0.75rem; border: 1px solid rgba(34, 197, 94, 0.5); border-radius: 0.25rem; text-decoration: none; transition: all 0.2s; }
-            .link:hover { background-color: rgba(34, 197, 94, 0.1); border-color: #4ade80; }
             .bracket { color: #6b7280; }
             .link-text { color: #4ade80; }
             .terminal-footer { background-color: #111827; padding: 0.5rem 1rem; font-size: 0.75rem; color: #4b5563; border-top: 1px solid rgba(34, 197, 94, 0.2); }
             .footer-prompt { color: rgba(34, 197, 94, 0.5); }
-            .page-footer { text-align: center; color: #4b5563; font-size: 0.75rem; margin-top: 1.5rem; }
             .heart { color: #ef4444; }
             .coffee { color: #eab308; }
+            .connect-section { text-align: center; margin-top: 1.5rem; }
+            .connect-title { color: #6b7280; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+            .connect-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+            .connect-link { padding: 0.375rem 0.75rem; border: 1px solid rgba(34, 197, 94, 0.5); border-radius: 0.25rem; text-decoration: none; font-size: 0.75rem; transition: all 0.2s; }
+            .connect-link:hover { background-color: rgba(34, 197, 94, 0.1); border-color: #4ade80; }
+            .copyright { text-align: center; color: #4b5563; font-size: 0.7rem; margin-top: 1rem; }
             .code-block { background-color: #111827; border-radius: 0.25rem; padding: 0.75rem 1rem; margin: 0.5rem 0; font-size: 0.75rem; overflow-x: auto; }
             .code-block .cmd { color: #22d3ee; }
             .code-block .comment { color: #6b7280; }
@@ -479,18 +481,6 @@ Then loops back to RED for next behavior</div>
                         <span class="highlight-tag">SOLID</span>
                     </div>
 
-                    <!-- Links Section -->
-                    <div class="links">
-                        <a href="https://github.com/Chemaclass/laravel-claude-toolkit" target="_blank" class="link">
-                            <span class="bracket">[</span><span class="link-text">GitHub</span><span class="bracket">]</span>
-                        </a>
-                        <a href="https://laravel.com/docs" target="_blank" class="link">
-                            <span class="bracket">[</span><span class="link-text">Laravel Docs</span><span class="bracket">]</span>
-                        </a>
-                        <a href="https://chemaclass.com" target="_blank" class="link">
-                            <span class="bracket">[</span><span class="link-text">@Chemaclass</span><span class="bracket">]</span>
-                        </a>
-                    </div>
                 </div>
 
                 <div class="terminal-footer">
@@ -498,9 +488,24 @@ Then loops back to RED for next behavior</div>
                 </div>
             </div>
 
-            <p class="page-footer">
-                Made with <span class="heart">&lt;3</span> and a lot of <span class="coffee">coffee</span>
-            </p>
+            <div class="connect-section">
+                <p class="connect-title">Connect</p>
+                <div class="connect-links">
+                    <a href="https://github.com/Chemaclass" target="_blank" class="connect-link">
+                        <span class="bracket">[</span><span class="link-text">GitHub</span><span class="bracket">]</span>
+                    </a>
+                    <a href="https://twitter.com/Chemaclass" target="_blank" class="connect-link">
+                        <span class="bracket">[</span><span class="link-text">Twitter</span><span class="bracket">]</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/jose-maria-valera-reales/" target="_blank" class="connect-link">
+                        <span class="bracket">[</span><span class="link-text">LinkedIn</span><span class="bracket">]</span>
+                    </a>
+                    <a href="https://chemaclass.com/sponsor/" target="_blank" class="connect-link">
+                        <span class="bracket">[</span><span class="link-text">Sponsor</span><span class="bracket">]</span>
+                    </a>
+                </div>
+                <p class="copyright">© {{ date('Y') }} Chemaclass · Made with <span class="heart">&lt;3</span> and <span class="coffee">coffee</span></p>
+            </div>
         </main>
 
         <script>
