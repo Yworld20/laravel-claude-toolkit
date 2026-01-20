@@ -210,7 +210,7 @@
                                 </div>
                                 <div class="config-field">
                                     <label for="app-port">App:</label>
-                                    <input type="number" id="app-port" value="8080" class="port-input" oninput="updateCommands()">
+                                    <input type="number" id="app-port" value="8085" class="port-input" oninput="updateCommands()">
                                 </div>
                                 <div class="config-field">
                                     <label for="vite-port">Vite:</label>
@@ -231,11 +231,11 @@
                         </div>
                         <div class="cmd-row">
                             <span class="prompt">$</span>
-                            <code id="cmd-3"><span class="cmd">APP_PORT=</span><span class="file">8080</span> <span class="cmd">VITE_PORT=</span><span class="file">5174</span> <span class="cmd">./vendor/bin/sail up -d</span></code>
+                            <code id="cmd-3"><span class="cmd">APP_PORT=</span><span class="file">8085</span> <span class="cmd">VITE_PORT=</span><span class="file">5174</span> <span class="cmd">./vendor/bin/sail up -d</span></code>
                             <button class="copy-inline" onclick="copyCmd(this, 3)" title="Copy">copy</button>
                         </div>
                         <div id="localhost-hint" class="localhost-hint" style="display: none;">
-                            <span style="color: #6b7280;">After running, your app will be available at</span> <a id="localhost-url" href="http://localhost:8080" target="_blank" class="localhost-link">http://localhost:8080</a>
+                            <span style="color: #6b7280;">After running, your app will be available at</span> <a id="localhost-url" href="http://localhost:8085" target="_blank" class="localhost-link">http://localhost:8085</a>
                         </div>
                     </div>
 
@@ -651,7 +651,7 @@ Then loops back to RED for next behavior</div>
             }
 
             function getAppPort() {
-                return document.getElementById('app-port').value || '8080';
+                return document.getElementById('app-port').value || '8085';
             }
 
             function getVitePort() {

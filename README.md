@@ -69,14 +69,14 @@ gh repo create my-app --template Chemaclass/laravel-claude-toolkit --public --cl
 # Setup the project
 cd my-app && composer setup
 
-# Start development server
-./vendor/bin/sail up -d
+# Start development server (Sail provides Docker containers)
+APP_PORT=8085 ./vendor/bin/sail up -d
 
 # Optional: Remove template's GitHub Pages files
 rm index.html .nojekyll
 ```
 
-Access: http://localhost
+Access: http://localhost:8085
 
 **Stack:** PHP 8.4 | Laravel 12 | SQLite | Tailwind CSS 4 | Sail
 
