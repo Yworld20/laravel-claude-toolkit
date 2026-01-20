@@ -71,6 +71,9 @@ cd my-app && composer setup
 
 # Start development server
 ./vendor/bin/sail up -d
+
+# Optional: Remove template's GitHub Pages files
+rm index.html .nojekyll
 ```
 
 Access: http://localhost
