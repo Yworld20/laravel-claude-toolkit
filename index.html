@@ -268,7 +268,7 @@
                                 <div class="example-output">- Level max (strictest analysis)
 - Laravel-aware via Larastan
 - Catches type errors before runtime
-- Analyzes app/ and modules/</div>
+- Analyzes modules/ directory</div>
                             </div>
                         </details>
 
@@ -394,6 +394,22 @@
 - Missing null check on optional discount</div>
                             </div>
                         </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">security-reviewer</span>
+                                <span class="table-desc">OWASP Top 10 & Laravel security analysis</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">You ask:</div>
+                                <div class="example-input">"Review security of the auth module"</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Agent checks:</div>
+                                <div class="example-output">- Hardcoded secrets detection
+- SQL injection vulnerabilities
+- XSS prevention (Blade escaping)
+- CSRF protection & rate limiting</div>
+                            </div>
+                        </details>
                     </div>
 
                     <!-- Claude Code Commands Section -->
@@ -407,6 +423,21 @@
 
                         <details>
                             <summary class="table-row">
+                                <span class="table-name">/create-module</span>
+                                <span class="table-desc">Full module structure with all layers</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Input:</div>
+                                <div class="example-input">/create-module Order</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Creates:</div>
+                                <div class="example-file">modules/Order/Domain/{Entity,ValueObject,Repository,Exception}/</div>
+                                <div class="example-file">modules/Order/Application/{Command,Query}/</div>
+                                <div class="example-file">modules/Order/Infrastructure/{Http,Persistence,Provider}/</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
                                 <span class="table-name">/create-entity</span>
                                 <span class="table-desc">Domain entity + value objects + test</span>
                             </summary>
@@ -415,8 +446,23 @@
                                 <div class="example-input">/create-entity Order Order</div>
                                 <div class="example-label" style="margin-top: 0.5rem;">Creates:</div>
                                 <div class="example-file">modules/Order/Domain/Entity/Order.php</div>
-                                <div class="example-file">modules/Order/Domain/ValueObject/OrderId.php</div>
+                                <div class="example-file">modules/Order/Domain/Entity/OrderId.php</div>
                                 <div class="example-file">tests/Unit/Order/Domain/Entity/OrderTest.php</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">/create-value-object</span>
+                                <span class="table-desc">Immutable value object + validation + test</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Input:</div>
+                                <div class="example-input">/create-value-object Order Money</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Creates:</div>
+                                <div class="example-file">modules/Order/Domain/ValueObject/Money.php</div>
+                                <div class="example-file">modules/Order/Domain/Exception/InvalidMoney.php</div>
+                                <div class="example-file">tests/Unit/Order/Domain/ValueObject/MoneyTest.php</div>
                             </div>
                         </details>
 
@@ -494,6 +540,38 @@ Then loops back to RED for next behavior</div>
 - Methods exceeding complexity threshold
 - Missing interface abstractions
 - Suggested refactoring patterns</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">/code-review</span>
+                                <span class="table-desc">Code quality & architecture compliance</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Input:</div>
+                                <div class="example-input">/code-review modules/Order/</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Checks:</div>
+                                <div class="example-output">- Architecture layer compliance
+- Naming conventions & code quality
+- Test coverage for changes
+- Security best practices</div>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary class="table-row">
+                                <span class="table-name">/security-review</span>
+                                <span class="table-desc">Security analysis with OWASP checks</span>
+                            </summary>
+                            <div class="example-box">
+                                <div class="example-label">Input:</div>
+                                <div class="example-input">/security-review modules/User/</div>
+                                <div class="example-label" style="margin-top: 0.5rem;">Analyzes:</div>
+                                <div class="example-output">- Dependency vulnerabilities (composer audit)
+- Hardcoded secrets & credentials
+- Input validation & SQL injection
+- Authentication & authorization</div>
                             </div>
                         </details>
                     </div>
