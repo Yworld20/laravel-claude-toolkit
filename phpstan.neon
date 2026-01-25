@@ -3,7 +3,6 @@ includes:
 
 parameters:
     paths:
-        - app/
         - modules/
 
     level: max

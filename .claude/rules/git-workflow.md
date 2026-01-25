@@ -16,7 +16,7 @@ Follow conventional commits:
 |------|---------|
 | `feat` | New features |
 | `fix` | Bug fixes |
-| `refactor` | Code restructuring (no behavior change) |
+| `ref` | Code restructuring (no behavior change) |
 | `test` | Adding/updating tests |
 | `docs` | Documentation changes |
 | `chore` | Maintenance tasks |
@@ -28,7 +28,7 @@ Follow conventional commits:
 ```
 feat: add user registration endpoint
 fix: prevent duplicate email registration
-refactor: extract email validation to value object
+ref: extract email validation to value object
 test: add integration tests for user repository
 ```
 
@@ -68,7 +68,7 @@ test: add integration tests for user repository
 ```
 feat/user-registration
 fix/duplicate-email-bug
-refactor/extract-email-vo
+ref/extract-email-vo
 test/user-repository
 ```
 
